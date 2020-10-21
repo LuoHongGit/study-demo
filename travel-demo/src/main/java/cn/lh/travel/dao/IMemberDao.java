@@ -1,8 +1,9 @@
 package cn.lh.travel.dao;
 
 import cn.lh.travel.entity.Member;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-
+@Mapper
 public interface IMemberDao {
 
     @Select("select * from member where id=#{id}")
