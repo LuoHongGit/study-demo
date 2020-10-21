@@ -15,6 +15,7 @@ public class TravellerServiceImpl implements TravellerService {
     private ITravellerMapper travellerMapper;
 
 
+
     @Override
     public List<Traveller> findAll() {
         return travellerMapper.findAll();
