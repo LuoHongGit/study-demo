@@ -9,7 +9,7 @@ import java.util.Map;
 public class TestController {
 
 
-    @RequestMapping("/index")
+    /*@RequestMapping("/index")
     public String velocityTest(Map map){
         map.put("message", "这是测试的内容。。。");
         map.put("toUserName", "张三1");
@@ -20,7 +20,7 @@ public class TestController {
     @RequestMapping("/hello")
     public String hello(Map map){
         return "main";
-    }
+    }*/
 
 
 
