@@ -1,0 +1,8 @@
+<html>
+<body>
+    #foreach($traveller in $travellers)
+     $traveller.credentialsTypeStr
+    #end
+
+</body>
+</html>

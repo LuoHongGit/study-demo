@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  velocity:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    resource-loader-path: /templates
+    prefix: /templates/
+    suffix: .vm
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/travel?useUnicode=TRUE&autoReconnect=true&connectTimeout=60000&socketTimeout=60000&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 123
+
+#MyBatis配置
+mybatis:
+  #mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: cn.lh.travel.entity
