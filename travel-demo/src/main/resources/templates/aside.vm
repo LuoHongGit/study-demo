@@ -54,7 +54,7 @@
                 <ul class="treeview-menu">
 
                     <li id="system-setting"><a
-                            href="../product/findAll.do">
+                            href="/product/toProductList">
                         <i class="fa fa-circle-o"></i> 产品管理
                     </a></li>
                     <li id="system-setting"><a
