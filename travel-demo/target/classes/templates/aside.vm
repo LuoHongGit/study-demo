@@ -27,7 +27,7 @@
 
 
             </a>
-                <ul class="treeview-menu">
+                <ul class="treeview-menu menu-open" style="display: block;">
 
                     <li id="system-setting"><a
                             href="../user/findAll.do"> <i
@@ -51,14 +51,14 @@
                         class="fa fa-angle-left pull-right"></i>
 				</span>
             </a>
-                <ul class="treeview-menu">
+                <ul class="treeview-menu menu-open" style="display: block;">
 
                     <li id="system-setting"><a
                             href="/product/toProductList">
                         <i class="fa fa-circle-o"></i> 产品管理
                     </a></li>
                     <li id="system-setting"><a
-                            href="../orders/findAll.do?page=1&pageSize=3"> <i
+                            href="/orders/findAll?page=1&pageSize=5"> <i
                             class="fa fa-circle-o"></i> 订单管理
                     </a></li>
 
