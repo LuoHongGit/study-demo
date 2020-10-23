@@ -9,7 +9,7 @@ import java.util.Date;
  * 产品信息
  */
 public class Product {
-    private String id; // 主键
+    private int id; // 主键
     private String productNum; // 编号 唯一
     private String productName; // 名称
     private String cityName; // 出发城市
@@ -21,11 +21,11 @@ public class Product {
     private Integer productStatus; // 状态 0 关闭 1 开启
     private String productStatusStr;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -91,7 +91,7 @@
         </section>
         <!-- 内容头部 /-->
 
-        <form action="/product/save"
+        <form action="/product/update"
               method="post">
             <!-- 正文区域 -->
             <section class="content"> <!--产品信息-->
@@ -99,6 +99,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">产品信息</div>
                     <div class="row data-type">
+
+                        <input type="hidden" class="form-control" name="id"
+                               placeholder="id" value="$product.id">
 
                         <div class="col-md-2 title">产品编号</div>
                         <div class="col-md-4 data">
@@ -117,7 +120,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <input type="text" class="form-control pull-right"
-                                       id="datepicker-a3" name="departureTime" value="$product.departureTime">
+                                       id="datepicker-a3" name="departureTime" value="$product.departureTimeStr">
                             </div>
                         </div>
 

@@ -190,9 +190,8 @@
                                     <td>$product.productDesc </td>
                                     <td class="text-center">$product.productStatusStr </td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='/product/findById?id=$product.id'">订单</button>
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='/product/findById?id=$product.id'">详情</button>
                                         <button type="button" class="btn bg-olive btn-xs" onclick="location.href='/product/toProductEdit?id=$product.id'">编辑</button>
+                                        <button type="button" id="deleteBtn" class="btn bg-olive btn-xs" onclick="deleteProduct($product.id)" >删除</button>
                                     </td>
                                 </tr>
 
@@ -373,6 +372,14 @@
         if (liObj.length > 0) {
             liObj.parent().parent().addClass("active");
             liObj.addClass("active");
+        }
+    }
+
+    function deleteProduct(id) {
+
+        if (confirm("您确定删除该商品吗?")) {
+            //点击确定后操作
+            location.href = '/product/delete?id=' + id;
         }
     }
 

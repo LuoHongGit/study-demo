@@ -20,13 +20,22 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void save(Product product) {
-        product.setId(UUIDUtils.getUUID());
         productDao.save(product);
     }
 
     @Override
     public Product findById(String id) {
         return productDao.findById(id);
+    }
+
+    @Override
+    public void update(Product product) {
+        productDao.update(product);
+    }
+
+    @Override
+    public void delete(int id) {
+        productDao.delete(id);
     }
 
     @Override

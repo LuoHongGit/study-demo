@@ -11,4 +11,8 @@ public interface IProductService {
     void save(Product product);
 
     Product findById(String id);
+
+    void update(Product product);
+
+    void delete(int id);
 }

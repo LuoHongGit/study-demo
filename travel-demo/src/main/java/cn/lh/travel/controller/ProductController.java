@@ -7,6 +7,8 @@ import cn.lh.travel.service.IProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,17 +79,18 @@ public class ProductController {
         return mv;
     }
 
-    @RequestMapping("/updateProduct")
-    public ModelAndView updateProduct(Product product){
-        ModelAndView mv = new ModelAndView();
+    @PostMapping("/update")
+    public String updateProduct(Product product){
+        productService.update(product);
 
-        
-
-        mv.addObject("product", product);
-        mv.setViewName("product-edit");
-
-        return mv;
+        return "redirect:toProductList";
     }
 
+    @GetMapping("/delete")
+    public String delete(int id){
+        productService.delete(id);
+
+        return "redirect:toProductList";
+    }
 
 }

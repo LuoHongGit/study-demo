@@ -1,9 +1,7 @@
 package cn.lh.travel.dao;
 
 import cn.lh.travel.entity.Product;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 @Mapper
@@ -18,9 +16,15 @@ public interface IProductDao {
     public List<Product> findAll();
 
     //插入产品
-    @Insert("insert into product(id,productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus) values(#{id},#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
+    @Insert("insert into product(productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus) values(#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void save(Product product);
 
+    //更新产品
+    @Update("update product set productNum=#{productNum},productName=#{productName},cityName=#{cityName},departureTime=#{departureTime},productPrice=#{productPrice},productDesc=#{productDesc},productStatus=#{productStatus} where id = #{id}")
+    void update(Product product);
 
-
+    //删除商品
+    @Delete("delete from product where id = #{id}")
+    void delete(int id);
 }
