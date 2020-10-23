@@ -8,6 +8,8 @@ public interface IProductService {
 
     List<Product> findAll();
 
+    List<Product> findAll(int page, int size);
+
     void save(Product product);
 
     Product findById(String id);

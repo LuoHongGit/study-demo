@@ -1,9 +1,11 @@
 package cn.lh.travel.controller;
 
+import cn.lh.travel.entity.Orders;
 import cn.lh.travel.entity.Product;
 import cn.lh.travel.exception.ExceptionEnum;
 import cn.lh.travel.exception.MyException;
 import cn.lh.travel.service.IProductService;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -91,6 +93,17 @@ public class ProductController {
         productService.delete(id);
 
         return "redirect:toProductList";
+    }
+
+    @RequestMapping("/findAll")
+    public ModelAndView findAllByPage(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page, @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) {
+        ModelAndView mv = new ModelAndView();
+        List<Product> productList = productService.findAll(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo = new PageInfo(productList);
+        mv.addObject("pageInfo", pageInfo);
+        mv.setViewName("product-page-list");
+        return mv;
     }
 
 }

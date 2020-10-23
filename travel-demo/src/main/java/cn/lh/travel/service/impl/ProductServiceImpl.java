@@ -4,6 +4,7 @@ import cn.lh.travel.dao.IProductDao;
 import cn.lh.travel.entity.Product;
 import cn.lh.travel.service.IProductService;
 import cn.lh.travel.utils.UUIDUtils;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,13 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public List<Product> findAll() {
+        return productDao.findAll();
+    }
+
+    @Override
+    public List<Product> findAll(int page, int size) {
+        //参数pageNum 是页码值   参数pageSize 代表是每页显示条数
+        PageHelper.startPage(page, size);
         return productDao.findAll();
     }
 }
