@@ -17,6 +17,10 @@ public interface IProductDao {
     @Select("select * from product")
     public List<Product> findAll();
 
+    //插入产品
     @Insert("insert into product(id,productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus) values(#{id},#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
     void save(Product product);
+
+
+
 }

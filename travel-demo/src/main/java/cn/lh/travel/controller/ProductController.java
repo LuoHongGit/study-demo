@@ -81,7 +81,7 @@ public class ProductController {
     public ModelAndView updateProduct(Product product){
         ModelAndView mv = new ModelAndView();
 
-
+        
 
         mv.addObject("product", product);
         mv.setViewName("product-edit");
