@@ -35,9 +35,9 @@ public interface IOrdersDao {
             @Result(property = "peopleCount", column = "peopleCount"),
             @Result(property = "payType", column = "payType"),
             @Result(property = "orderDesc", column = "orderDesc"),
-            @Result(property = "product", column = "productId", javaType = Product.class, one = @One(select = "com.itheima.ssm.dao.IProductDao.findById")),
-            @Result(property = "member",column = "memberId",javaType = Member.class,one = @One(select = "com.itheima.ssm.dao.IMemberDao.findById")),
-            @Result(property = "travellers",column = "id",javaType = List.class,many = @Many(select = "com.itheima.ssm.dao.ITravellerDao.findByOrdersId"))
+            @Result(property = "product", column = "productId", javaType = Product.class, one = @One(select = "cn.lh.travel.dao.IProductDao.findById")),
+            @Result(property = "member",column = "memberId",javaType = Member.class,one = @One(select = "cn.lh.travel.dao.IMemberDao.findById")),
+            @Result(property = "travellers",column = "id",javaType = List.class,many = @Many(select = "cn.lh.travel.dao.ITravellerDao.findByOrdersId"))
     })
     public Orders findById(String ordersId) throws Exception;
 }

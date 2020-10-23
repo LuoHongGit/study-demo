@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface ITravellerMapper {
+public interface ITravellerDao {
     @Select("select * from traveller")
     List<Traveller> findAll();
 

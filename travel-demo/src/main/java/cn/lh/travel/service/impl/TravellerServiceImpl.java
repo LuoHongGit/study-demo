@@ -1,6 +1,6 @@
 package cn.lh.travel.service.impl;
 
-import cn.lh.travel.dao.ITravellerMapper;
+import cn.lh.travel.dao.ITravellerDao;
 import cn.lh.travel.entity.Traveller;
 import cn.lh.travel.service.TravellerService;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 public class TravellerServiceImpl implements TravellerService {
 
     @Resource
-    private ITravellerMapper travellerMapper;
+    private ITravellerDao travellerMapper;
 
     @Override
     public List<Traveller> findAll() {

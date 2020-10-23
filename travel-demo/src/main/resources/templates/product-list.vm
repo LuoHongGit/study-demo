@@ -117,7 +117,7 @@
                                             onclick="location.href='/product/toAddProduct'">
                                         <i class="fa fa-file-o"></i> 新建
                                     </button>
-                                    <button type="button" class="btn btn-default" title="删除">
+                                    #*<button type="button" class="btn btn-default" title="删除">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </button>
                                     <button type="button" class="btn btn-default" title="开启">
@@ -125,8 +125,8 @@
                                     </button>
                                     <button type="button" class="btn btn-default" title="屏蔽">
                                         <i class="fa fa-ban"></i> 屏蔽
-                                    </button>
-                                    <button type="button" class="btn btn-default" title="刷新">
+                                    </button>*#
+                                    <button type="button" class="btn btn-default" title="刷新" onclick="location.href='/product/toProductList'">
                                         <i class="fa fa-refresh"></i> 刷新
                                     </button>
                                 </div>
@@ -146,9 +146,6 @@
                                class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right: 0px;"><input
-                                        id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th class="sorting_asc">ID</th>
                                 <th class="sorting_desc">编号</th>
                                 <th class="sorting_asc sorting_asc_disabled">产品名称</th>
@@ -184,7 +181,6 @@
                             </c:forEach>*#
                             #foreach($product in $products)
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>$product.id </td>
                                     <td>$product.productNum </td>
                                     <td>$product.productName </td>
@@ -194,9 +190,9 @@
                                     <td>$product.productDesc </td>
                                     <td class="text-center">$product.productStatusStr </td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                        <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                        <button type="button" class="btn bg-olive btn-xs">编辑</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='/product/findById?id=$product.id'">订单</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='/product/findById?id=$product.id'">详情</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='/product/toProductEdit?id=$product.id'">编辑</button>
                                     </td>
                                 </tr>
 

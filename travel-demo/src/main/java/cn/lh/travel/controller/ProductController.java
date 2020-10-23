@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -30,14 +32,8 @@ public class ProductController {
      */
     @RequestMapping("/toProductList")
     public String toProductList(Map map) throws MyException {
-        try {
-            List<Product> products = productService.findAll();
-            map.put("products", products);
-        } catch (Exception e) {
-            log.error("toProductList...查询产品列表失败");
-            e.printStackTrace();
-            throw new MyException("查询产品列表失败", 444);
-        }
+        List<Product> products = productService.findAll();
+        map.put("products", products);
 
         return "product-list";
     }
@@ -57,6 +53,40 @@ public class ProductController {
     @RequestMapping("toAddProduct")
     public String toAddProductPage(){
         return "product-add";
+    }
+
+    @RequestMapping("/findById")
+    public ModelAndView findById(@RequestParam("id")String id){
+        ModelAndView mv = new ModelAndView();
+        Product product = productService.findById(id);
+
+        mv.addObject("product", product);
+        mv.setViewName("product-show");
+
+        return mv;
+    }
+
+    @RequestMapping("/toProductEdit")
+    public ModelAndView toProductEdit(@RequestParam("id")String id){
+        ModelAndView mv = new ModelAndView();
+        Product product = productService.findById(id);
+
+        mv.addObject("product", product);
+        mv.setViewName("product-edit");
+
+        return mv;
+    }
+
+    @RequestMapping("/updateProduct")
+    public ModelAndView updateProduct(Product product){
+        ModelAndView mv = new ModelAndView();
+
+
+
+        mv.addObject("product", product);
+        mv.setViewName("product-edit");
+
+        return mv;
     }
 
 
