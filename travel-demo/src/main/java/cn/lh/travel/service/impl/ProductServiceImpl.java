@@ -45,7 +45,9 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<Product> findAllByKey(String key) {
+    public List<Product> findAllByPageAndKey(int page, int size,String key) {
+        //参数pageNum 是页码值   参数pageSize 代表是每页显示条数
+        PageHelper.startPage(page, size);
         return productDao.findAllByKey(key);
     }
 

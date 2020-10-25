@@ -135,7 +135,7 @@
                         <div class="box-tools pull-right">
                             <div class="has-feedback">
                                 <input type="text" class="form-control input-sm"
-                                       placeholder="搜索"> <span
+                                       placeholder="搜索" value="$!key" onchange="searchChange()"> <span
                                     class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
@@ -223,7 +223,7 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            当前第$pageInfo.pageNum页/共$pageInfo.pages 页，共$pageInfo.total 条数据。 每页 <select class="form-control" id="ps" onchange="pageSizeChange()">
+                            当前第$pageInfo.pageNum 页/共$pageInfo.pages 页，共$pageInfo.total 条数据。 每页 <select class="form-control" id="ps" onchange="pageSizeChange()">
                             <option value="1" #if($pageInfo.pageSize==1) selected="selected" #end>1</option>
                             <option value="2" #if($pageInfo.pageSize==2) selected="selected" #end>2</option>
                             <option value="3" #if($pageInfo.pageSize==3) selected="selected" #end>3</option>
@@ -375,13 +375,18 @@
 <script
         src="/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-    function pageSizeChange(){
-        var select = document.getElementById("ps");
-        //1.如何获得当前选中的值？：
-        var value = select.value;
 
-        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + value;
+    #set($prePage=$pageInfo.pageNum - 1)
+
+    function pageSizeChange(){
+        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize + "&key=" + $key;
     };
+
+    function searchChange(){
+        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize  + "&key=" #if(!$key)+ $key #end;
+
+    };
+
 
     $(document).ready(function() {
         // 选择框

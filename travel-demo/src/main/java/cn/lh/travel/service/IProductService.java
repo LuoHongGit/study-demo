@@ -8,7 +8,7 @@ public interface IProductService {
 
     List<Product> findAll();
 
-    List<Product> findAllByKey(String key);
+    List<Product> findAllByPageAndKey(int page, int size,String key);
 
     List<Product> findByPage(int page, int size);
 

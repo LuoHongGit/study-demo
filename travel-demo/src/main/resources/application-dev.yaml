@@ -21,3 +21,5 @@ spring:
 mybatis:
   #mapper-locations: classpath:mapping/*Mapper.xml
   type-aliases-package: cn.lh.travel.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
