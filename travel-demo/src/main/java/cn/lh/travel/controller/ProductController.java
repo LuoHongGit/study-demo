@@ -35,7 +35,7 @@ public class ProductController {
      * @throws MyException
      */
     @RequestMapping("/toProductList")
-    public String toProductList(Map map) throws MyException {
+    public String toProductList(Map map, String key) throws MyException {
         List<Product> products = productService.findAll();
         map.put("products", products);
 
@@ -51,7 +51,7 @@ public class ProductController {
     @RequestMapping("/save")
     public String save(Product product) throws Exception {
         productService.save(product);
-        return "redirect:toProductList";
+        return "redirect:findByPage";
     }
 
     @RequestMapping("toAddProduct")
@@ -85,20 +85,22 @@ public class ProductController {
     public String updateProduct(Product product){
         productService.update(product);
 
-        return "redirect:toProductList";
+        return "redirect:findByPage";
     }
 
     @GetMapping("/delete")
     public String delete(int id){
         productService.delete(id);
 
-        return "redirect:toProductList";
+        return "redirect:findByPage";
     }
 
-    @RequestMapping("/findAll")
-    public ModelAndView findAllByPage(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page, @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) {
+    @RequestMapping("/findByPage")
+    public ModelAndView findAllByPage(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
+                                      @RequestParam(name = "size", required = true, defaultValue = "5") Integer size
+                                      ) {
         ModelAndView mv = new ModelAndView();
-        List<Product> productList = productService.findAll(page, size);
+        List<Product> productList = productService.findByPage(page, size);
         //PageInfo就是一个分页Bean
         PageInfo pageInfo = new PageInfo(productList);
         mv.addObject("pageInfo", pageInfo);

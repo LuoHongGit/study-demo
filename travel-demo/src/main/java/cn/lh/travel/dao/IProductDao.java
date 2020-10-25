@@ -15,6 +15,15 @@ public interface IProductDao {
     @Select("select * from product")
     public List<Product> findAll();
 
+    //查询所有的产品信息带模糊查询
+    @Select("<script>\n" +
+            "\tselect * from user \n" +
+            "\t<where>\n" +
+            "\t\t<if test='key != null'>productNum like #{key} or productName like #{key} and cityName like #{key} </if>\n" +
+            "\t</where>\n" +
+            "</script>")
+    public List<Product> findAllByKey(@Param("key") String key);
+
     //插入产品
     @Insert("insert into product(productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus) values(#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")

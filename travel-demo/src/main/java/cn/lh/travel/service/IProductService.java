@@ -8,7 +8,9 @@ public interface IProductService {
 
     List<Product> findAll();
 
-    List<Product> findAll(int page, int size);
+    List<Product> findAllByKey(String key);
+
+    List<Product> findByPage(int page, int size);
 
     void save(Product product);
 

@@ -54,7 +54,7 @@
                 <ul class="treeview-menu menu-open" style="display: block;">
 
                     <li id="system-setting"><a
-                            href="/product/toProductList">
+                            href="/product/findByPage">
                         <i class="fa fa-circle-o"></i> 产品管理
                     </a></li>
                     <li id="system-setting"><a
