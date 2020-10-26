@@ -3,17 +3,17 @@ package cn.lh.travel.entity;
 import java.util.List;
 
 public class Role {
-    private String id;
+    private int id;
     private String roleName;
     private String roleDesc;
     private List<Permission> permissions;
     private List<UserInfo> users;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

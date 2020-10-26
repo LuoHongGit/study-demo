@@ -3,16 +3,16 @@ package cn.lh.travel.entity;
 import java.util.List;
 
 public class Permission {
-    private String id;
+    private int id;
     private String permissionName;
     private String url;
     private List<Role> roles;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
