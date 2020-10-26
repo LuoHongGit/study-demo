@@ -97,15 +97,13 @@ public class ProductController {
 
     @RequestMapping("/findByPage")
     public ModelAndView findAllByPage(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
-                                      @RequestParam(name = "size", required = true, defaultValue = "5") Integer size,
-                                      @RequestParam(name = "key", required = false) String key
+                                      @RequestParam(name = "size", required = true, defaultValue = "5") Integer size
                                       ) {
         ModelAndView mv = new ModelAndView();
-        List<Product> productList = productService.findAllByPageAndKey(page, size, key);
+        List<Product> productList = productService.findByPage(page, size);
         //PageInfo就是一个分页Bean
         PageInfo pageInfo = new PageInfo(productList);
         mv.addObject("pageInfo", pageInfo);
-        mv.addObject("key", key);
 
         mv.setViewName("product-page-list");
         return mv;

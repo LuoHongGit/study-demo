@@ -132,13 +132,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="box-tools pull-right">
+                        #*<div class="box-tools pull-right">
                             <div class="has-feedback">
-                                <input type="text" class="form-control input-sm"
+                                <input id="searchVal" type="text" class="form-control input-sm"
                                        placeholder="搜索" value="$!key" onchange="searchChange()"> <span
                                     class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
-                        </div>
+                        </div>*#
                         <!--工具栏/-->
 
                         <!--数据列表-->
@@ -159,26 +159,6 @@
                             </thead>
                             <tbody>
 
-
-                            #*<c:forEach items="${productList}" var="product">
-
-                                <tr>
-                                    <td><input name="ids" type="checkbox"></td>
-                                    <td>${product.id }</td>
-                                    <td>${product.productNum }</td>
-                                    <td>${product.productName }</td>
-                                    <td>${product.cityName }</td>
-                                    <td>${product.departureTimeStr }</td>
-                                    <td class="text-center">${product.productPrice }</td>
-                                    <td>${product.productDesc }</td>
-                                    <td class="text-center">${product.productStatusStr }</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                        <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                        <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>*#
                             #foreach($product in $pageInfo.list )
                                 <tr>
                                     <td>$product.id </td>
@@ -199,16 +179,6 @@
 
 
                             </tbody>
-                            <!--
-                        <tfoot>
-                        <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                        </tr>
-                        </tfoot>-->
                         </table>
                         <!--数据列表/-->
 
@@ -242,15 +212,6 @@
                             #if(!$pageInfo.isFirstPage)
                                 <li><a href="/product/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
                             #end
-
-
-                            #*#foreach($product in $pageInfo.list)
-
-                            #end*#
-
-                            #*<c:forEach begin="1" end="$pageInfo.pages" var="pageNum">
-                                <li><a href="/product/findAll?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
-                            </c:forEach>*#
 
                             #foreach($pageNum in [1..$pageInfo.pages])
                                 <li><a href="/product/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
@@ -379,12 +340,14 @@
     #set($prePage=$pageInfo.pageNum - 1)
 
     function pageSizeChange(){
-        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize + "&key=" + $key;
+        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize;
     };
 
     function searchChange(){
-        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize  + "&key=" #if(!$key)+ $key #end;
+        var search = document.getElementById("searchVal");
+        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize;
 
+        #*#if($key)+ $!key #end*#
     };
 
 
