@@ -207,23 +207,23 @@
                     <div class="box-tools pull-right">
                         <ul class="pagination">
                             <li>
-                                <a href="/product/findByPage?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
+                                <a href="/user/findByPage?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
                             </li>
                             #set($prePage=$pageInfo.pageNum - 1)
                             #if(!$pageInfo.isFirstPage)
-                                <li><a href="/product/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
+                                <li><a href="/user/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
                             #end
 
                             #foreach($pageNum in [1..$pageInfo.pages])
-                                <li><a href="/product/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
+                                <li><a href="/user/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
                             #end
 
                             #set($nextPage=$pageInfo.pageNum + 1)
                             #if(!$pageInfo.isLastPage)
-                                <li><a href="/product/findByPage?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
+                                <li><a href="/user/findByPage?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
                             #end
                             <li>
-                                <a href="/product/findByPage?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
+                                <a href="/user/findByPage?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
                             </li>
                         </ul>
                     </div>

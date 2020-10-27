@@ -3,12 +3,15 @@ package cn.lh.travel.service;
 
 import cn.lh.travel.entity.Permission;
 import cn.lh.travel.entity.Role;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 public interface IRoleService {
 
-    public List<Role> findAll() throws Exception;
+    List<Role> findAll() throws Exception;
+
+    PageInfo findByPage(int page, int size) throws Exception;
 
     void save(Role role) throws Exception;
 

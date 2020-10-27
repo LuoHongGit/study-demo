@@ -4,6 +4,8 @@ import cn.lh.travel.dao.IRoleDao;
 import cn.lh.travel.entity.Permission;
 import cn.lh.travel.entity.Role;
 import cn.lh.travel.service.IRoleService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,5 +54,12 @@ public class RoleServiceImpl implements IRoleService {
     @Override
     public List<Role> findAll() throws Exception{
         return roleDao.findAll();
+    }
+
+    @Override
+    public PageInfo findByPage(int page, int size) throws Exception {
+        //参数pageNum 是页码值   参数pageSize 代表是每页显示条数
+        PageHelper.startPage(page, size);
+        return new PageInfo(roleDao.findAll());
     }
 }
