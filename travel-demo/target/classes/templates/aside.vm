@@ -30,7 +30,7 @@
                 <ul class="treeview-menu menu-open" style="display: block;">
 
                     <li id="system-setting"><a
-                            href="/user/findAll"> <i
+                            href="/user/findByPage"> <i
                             class="fa fa-circle-o"></i> 用户管理
                     </a></li>
                     <li id="system-setting"><a

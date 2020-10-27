@@ -110,7 +110,7 @@
                                         <i class="fa fa-file-o"></i> 新建
                                     </button>
 
-                                    <button type="button" class="btn btn-default" title="刷新">
+                                    <button type="button" class="btn btn-default" title="刷新" onclick="location.href='/user/findByPage'">
                                         <i class="fa fa-refresh"></i> 刷新
                                     </button>
                                 </div>
@@ -130,9 +130,6 @@
                                class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right: 0px"><input
-                                        id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th class="sorting_asc">ID</th>
                                 <th class="sorting_desc">用户名</th>
                                 <th class="sorting_asc sorting_asc_disabled">邮箱</th>
@@ -160,14 +157,13 @@
 
                                 #foreach($user in $pageInfo.list )
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>$user.id </td>
                                     <td>$user.username </td>
                                     <td>$user.email </td>
                                     <td>$user.phoneNum </td>
                                     <td>$user.statusStr </td>
                                     <td class="text-center">
-                                        <a href="/user/findById?id=$user.id" class="btn bg-olive btn-xs">详情</a>
+                                        <a href="/user/toEditPage?id=$user.id" class="btn bg-olive btn-xs">编辑</a>
                                         <a href="/user/findUserByIdAndAllRole?id=$user.id" class="btn bg-olive btn-xs">添加角色</a>
                                     </td>
                                 </tr>
@@ -198,27 +194,37 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共2 页，共14 条数据。 每页 <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select> 条
+                            当前第$pageInfo.pageNum 页/共$pageInfo.pages 页，共$pageInfo.total 条数据。 每页 <select class="form-control" id="ps" onchange="pageSizeChange()">
+                            <option value="1" #if($pageInfo.pageSize==1) selected="selected" #end>1</option>
+                            <option value="2" #if($pageInfo.pageSize==2) selected="selected" #end>2</option>
+                            <option value="3" #if($pageInfo.pageSize==3) selected="selected" #end>3</option>
+                            <option value="4" #if($pageInfo.pageSize==4) selected="selected" #end>4</option>
+                            <option value="5" #if($pageInfo.pageSize==5) selected="selected" #end>5</option>
+                        </select> 条数据
                         </div>
                     </div>
 
                     <div class="box-tools pull-right">
                         <ul class="pagination">
-                            <li><a href="#" aria-label="Previous">首页</a></li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li><a href="#" aria-label="Next">尾页</a></li>
+                            <li>
+                                <a href="/product/findByPage?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
+                            </li>
+                            #set($prePage=$pageInfo.pageNum - 1)
+                            #if(!$pageInfo.isFirstPage)
+                                <li><a href="/product/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
+                            #end
+
+                            #foreach($pageNum in [1..$pageInfo.pages])
+                                <li><a href="/product/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
+                            #end
+
+                            #set($nextPage=$pageInfo.pageNum + 1)
+                            #if(!$pageInfo.isLastPage)
+                                <li><a href="/product/findByPage?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
+                            #end
+                            <li>
+                                <a href="/product/findByPage?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
+                            </li>
                         </ul>
                     </div>
 

@@ -27,6 +27,9 @@ public interface IUserDao {
     @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
     void save(UserInfo userInfo) throws Exception;
 
+    @Update("update users set email=#{email},username=#{username},password=#{password},phoneNum=#{phoneNum},status=#{status} where id = #{id}")
+    void update(UserInfo userInfo) throws Exception;
+
     @Select("select * from users where id=#{id}")
     @Results({
             @Result(id = true, property = "id", column = "id"),

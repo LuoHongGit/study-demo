@@ -3,6 +3,7 @@ package cn.lh.travel.controller;
 import cn.lh.travel.entity.Role;
 import cn.lh.travel.entity.UserInfo;
 import cn.lh.travel.service.IUserService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ public class UserController {
     private IUserService userService;
 
     //给用户添加角色
-    @RequestMapping("/addRoleToUser.do")
+    @RequestMapping("/addRoleToUser")
     public String addRoleToUser(@RequestParam(name = "userId", required = true) int userId, @RequestParam(name = "ids", required = true) int[] roleIds) {
         userService.addRoleToUser(userId, roleIds);
         return "redirect:findAll";
@@ -49,11 +50,27 @@ public class UserController {
         return mv;
     }
 
+    //跳转到编辑页面
+    @RequestMapping("/toEditPage")
+    public ModelAndView toEditPage(@RequestParam("id") int id) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        UserInfo userInfo = userService.findById(id);
+        mv.addObject("user", userInfo);
+        mv.setViewName("user-edit");
+        return mv;
+    }
+
     //用户添加
     @RequestMapping("/save")
     public String save(UserInfo userInfo) throws Exception {
         userService.save(userInfo);
-        return "redirect:findAll";
+        return "redirect:findByPage";
+    }
+
+    @RequestMapping("/update")
+    public String update(UserInfo userInfo) throws Exception {
+        userService.update(userInfo);
+        return "redirect:findByPage";
     }
 
     //跳转到用户添加页面
@@ -70,5 +87,17 @@ public class UserController {
         mv.setViewName("user-page-list");
         return mv;
     }
+
+    @RequestMapping("/findByPage")
+    public ModelAndView findByPage(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
+                                @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        PageInfo pageInfo = userService.findByPage(page, size);
+        mv.addObject("pageInfo", pageInfo);
+        mv.setViewName("user-page-list");
+        return mv;
+    }
+
+
 
 }

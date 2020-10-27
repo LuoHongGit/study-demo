@@ -4,6 +4,8 @@ import cn.lh.travel.dao.IUserDao;
 import cn.lh.travel.entity.Role;
 import cn.lh.travel.entity.UserInfo;
 import cn.lh.travel.service.IUserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -53,8 +55,23 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public void update(UserInfo userInfo) throws Exception {
+        //对密码进行加密处理
+        userInfo.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));
+        userDao.update(userInfo);
+    }
+
+    @Override
     public List<UserInfo> findAll() throws Exception {
+
         return userDao.findAll();
+    }
+
+    @Override
+    public PageInfo findByPage(int page, int size) throws Exception {
+        //参数pageNum 是页码值   参数pageSize 代表是每页显示条数
+        PageHelper.startPage(page, size);
+        return new PageInfo(userDao.findAll());
     }
 
     @Override
@@ -73,7 +90,6 @@ public class UserServiceImpl implements IUserService {
 
     //作用就是返回一个List集合，集合中装入的是角色描述
     public List<SimpleGrantedAuthority> getAuthority(List<Role> roles) {
-
         List<SimpleGrantedAuthority> list = new ArrayList<>();
         for (Role role : roles) {
             list.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
