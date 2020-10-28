@@ -8,9 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface ITravellerDao {
-    @Select("select * from traveller")
+    @Select("select * from lh_traveller")
     List<Traveller> findAll();
 
-    @Select("select * from traveller where id in (select travellerId from order_traveller where orderId=#{ordersId})")
+    @Select("select * from lh_traveller where id in (select travellerId from lh_order_traveller where orderId=#{ordersId})")
     public List<Traveller> findByOrdersId(String ordersId) throws Exception;
 }

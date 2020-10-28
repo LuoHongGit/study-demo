@@ -8,25 +8,25 @@ import java.util.List;
 @Mapper
 public interface IPermissionDao {
     //查询与role关联的所有的权限
-    @Select("select * from permission where id in (select permissionId from role_permission where roleId=#{id} )")
+    @Select("select * from lh_permission where id in (select permissionId from lh_role_permission where roleId=#{id} )")
     public List<Permission> findPermissionByRoleId(int id) throws Exception;
 
 
-    @Select("select * from permission")
+    @Select("select * from lh_permission")
     List<Permission> findAll() throws Exception;
 
-    @Insert("insert into permission(permissionName,url) values(#{permissionName},#{url})")
+    @Insert("insert into lh_permission(permissionName,url) values(#{permissionName},#{url})")
     void save(Permission permission) throws Exception;
 
-    @Update("update permission set permissionName=#{permissionName},url=#{url} where id=#{id}")
+    @Update("update lh_permission set permissionName=#{permissionName},url=#{url} where id=#{id}")
     void update(Permission permission) throws Exception;
 
-    @Select("select * from permission where id=#{id}")
+    @Select("select * from lh_permission where id=#{id}")
     Permission findById(int id) throws Exception;
 
-    @Delete("delete from role_permission where permissionId=#{id}")
+    @Delete("delete from lh_role_permission where permissionId=#{id}")
     void deleteFromRole_Permission(int id) throws Exception;
 
-    @Delete("delete from permission where id=#{id}")
+    @Delete("delete from lh_permission where id=#{id}")
     void deleteById(int id) throws Exception ;
 }

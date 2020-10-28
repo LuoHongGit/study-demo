@@ -10,7 +10,7 @@ import java.util.List;
 public interface IRoleDao {
 
     //根据用户id查询出所有对应的角色
-    @Select("select * from role where id in (select roleId from users_role where userId=#{userId})")
+    @Select("select * from lh_role where id in (select roleId from lh_users_role where userId=#{userId})")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "roleName", column = "roleName"),
@@ -19,16 +19,16 @@ public interface IRoleDao {
     })
     public List<Role> findRoleByUserId(int userId) throws Exception;
 
-    @Select("select * from role")
+    @Select("select * from lh_role")
     List<Role> findAll() throws Exception;
 
-    @Insert("insert into role(roleName,roleDesc) values(#{roleName},#{roleDesc})")
+    @Insert("insert into lh_role(roleName,roleDesc) values(#{roleName},#{roleDesc})")
     void save(Role role);
 
-    @Update("update role set roleName=#{roleName},roleDesc=#{roleDesc} where id=#{id}")
+    @Update("update lh_role set roleName=#{roleName},roleDesc=#{roleDesc} where id=#{id}")
     void update(Role role);
 
-    @Select("select * from role where id=#{roleId}")
+    @Select("select * from lh_role where id=#{roleId}")
     @Results({
             @Result(id = true,property = "id",column = "id"),
             @Result(property = "roleName",column = "roleName"),
@@ -37,17 +37,17 @@ public interface IRoleDao {
     })
     Role findById(int roleId);
 
-    @Select("select * from permission where id not in (select permissionId from role_permission where roleId=#{roleId})")
+    @Select("select * from lh_permission where id not in (select permissionId from lh_role_permission where roleId=#{roleId})")
     List<Permission> findOtherPermissions(int roleId);
 
-    @Insert("insert into role_permission(roleId,permissionId) values(#{roleId},#{permissionId})")
+    @Insert("insert into lh_role_permission(roleId,permissionId) values(#{roleId},#{permissionId})")
     void addPermissionToRole(@Param("roleId") int roleId, @Param("permissionId") int permissionId);
 
-    @Delete("delete from users_role where roleId=#{roleId}")
+    @Delete("delete from lh_users_role where roleId=#{roleId}")
     void deleteFromUser_RoleByRoleId(int roleId);
-    @Delete("delete from role_permission where roleId=#{roleId}")
+    @Delete("delete from lh_role_permission where roleId=#{roleId}")
     void deleteFromRole_PermissionByRoleId(int roleId);
 
-    @Delete("delete from role where id=#{roleId}")
+    @Delete("delete from lh_role where id=#{roleId}")
     void deleteRoleById(int roleId);
 }

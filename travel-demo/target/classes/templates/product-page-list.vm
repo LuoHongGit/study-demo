@@ -340,7 +340,9 @@
     #set($prePage=$pageInfo.pageNum - 1)
 
     function pageSizeChange(){
-        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize;
+        var ps = document.getElementById("ps");
+        var size = ps.value;
+        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + size;
     };
 
     function searchChange(){

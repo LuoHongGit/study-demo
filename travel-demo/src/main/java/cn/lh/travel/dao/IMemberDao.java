@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface IMemberDao {
 
-    @Select("select * from member where id=#{id}")
+    @Select("select * from lh_member where id=#{id}")
     public Member findById(String id) throws Exception;
 
 

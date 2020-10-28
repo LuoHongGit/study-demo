@@ -18,9 +18,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/travel?useUnicode=TRUE&autoReconnect=true&connectTimeout=60000&socketTimeout=60000&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
-    username: root
-    password: 123
+    url: jdbc:mysql://192.168.56.211:3307/training?useUnicode=TRUE&autoReconnect=true&connectTimeout=60000&socketTimeout=60000&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: intern
+    password: intern
 
 #MyBatis配置
 mybatis:

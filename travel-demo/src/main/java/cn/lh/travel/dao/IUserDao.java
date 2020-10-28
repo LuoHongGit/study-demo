@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface IUserDao {
 
-    @Select("select * from users where username=#{username}")
+    @Select("select * from lh_users where username=#{username}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "username", column = "username"),
@@ -21,16 +21,16 @@ public interface IUserDao {
     })
     UserInfo findByUsername(String username) throws Exception;
 
-    @Select("select * from users")
+    @Select("select * from lh_users")
     List<UserInfo> findAll() throws Exception;
 
-    @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
+    @Insert("insert into lh_users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
     void save(UserInfo userInfo) throws Exception;
 
-    @Update("update users set email=#{email},username=#{username},password=#{password},phoneNum=#{phoneNum},status=#{status} where id = #{id}")
+    @Update("update lh_users set email=#{email},username=#{username},password=#{password},phoneNum=#{phoneNum},status=#{status} where id = #{id}")
     void update(UserInfo userInfo) throws Exception;
 
-    @Select("select * from users where id=#{id}")
+    @Select("select * from lh_users where id=#{id}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "username", column = "username"),
@@ -42,9 +42,9 @@ public interface IUserDao {
     })
     UserInfo findById(int id) throws Exception;
 
-    @Select("select * from role where id not in (select roleId from users_role where userId=#{userId})")
+    @Select("select * from lh_role where id not in (select roleId from lh_users_role where userId=#{userId})")
     List<Role> findOtherRoles(int userId);
 
-    @Insert("insert into users_role(userId,roleId) values(#{userId},#{roleId})")
+    @Insert("insert into lh_users_role(userId,roleId) values(#{userId},#{roleId})")
     void addRoleToUser(@Param("userId") int userId, @Param("roleId") int roleId);
 }

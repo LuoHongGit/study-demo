@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface IOrdersDao {
 
-    @Select("select * from orders")
+    @Select("select * from lh_orders")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "orderNum", column = "orderNum"),
@@ -25,7 +25,7 @@ public interface IOrdersDao {
     public List<Orders> findAll() throws Exception;
 
     //多表操作
-    @Select("select * from orders where id=#{ordersId}")
+    @Select("select * from lh_orders where id=#{ordersId}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "orderNum", column = "orderNum"),
