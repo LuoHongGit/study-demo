@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>用户 - 用户列表</title>
-    <meta name="description" content="用户 - 用户列表">
-    <meta name="keywords" content="用户 - 用户列表">
+    <title>权限 - 权限列表</title>
+    <meta name="description" content="权限 - 权限列表">
+    <meta name="keywords" content="权限 - 权限列表">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -77,15 +77,15 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                用户管理 <small>全部用户</small>
+                资源权限管理 <small>全部权限</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/index.jsp"><i
                         class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a
-                        href="/user/findAll.do">用户管理</a></li>
+                        href="/permission/findAll.do">资源权限管理</a></li>
 
-                <li class="active">全部用户</li>
+                <li class="active">全部权限</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -106,23 +106,18 @@
                         <div class="pull-left">
                             <div class="form-group form-inline">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建" onclick="location.href='/user/toUserAddPage'">
+                                    <button type="button" class="btn btn-default" title="新建" onclick="location.href='/permission/toPermissionAddPage'">
                                         <i class="fa fa-file-o"></i> 新建
                                     </button>
 
-                                    <button type="button" class="btn btn-default" title="刷新" onclick="location.href='/user/findByPage'">
+                                    <button type="button" class="btn btn-default" title="刷新" onclick="location.href='/permission/findByPage'">
                                         <i class="fa fa-refresh"></i> 刷新
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        #*<div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm"
-                                       placeholder="搜索"> <span
-                                    class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>*#
+                        <div class="box-tools pull-right">
+                        </div>
                         <!--工具栏/-->
 
                         <!--数据列表-->
@@ -131,33 +126,26 @@
                             <thead>
                             <tr>
                                 <th class="sorting_asc">ID</th>
-                                <th class="sorting_desc">用户名</th>
-                                <th class="sorting_asc sorting_asc_disabled">邮箱</th>
-                                <th class="sorting_desc sorting_desc_disabled">联系电话</th>
-                                <th class="sorting">状态</th>
+                                <th class="sorting_desc">权限名称</th>
+                                <th class="sorting_asc sorting_asc_disabled">URL</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
 
-
-                                #foreach($user in $pageInfo.list )
-                                <tr>
-                                    <td>$user.id </td>
-                                    <td>$user.username </td>
-                                    <td>$user.email </td>
-                                    <td>$user.phoneNum </td>
-                                    <td>$user.statusStr </td>
-                                    <td class="text-center">
-                                        <a href="/user/findById?id=${user.id}" class="btn bg-olive btn-xs">详情</a>
-                                        <a href="/user/toEditPage?id=$user.id" class="btn bg-olive btn-xs">编辑</a>
-                                        <a href="/user/findUserByIdAndAllRole?id=$user.id" class="btn bg-olive btn-xs">添加角色</a>
-                                    </td>
-                                </tr>
+                                #foreach($p in $pageInfo.list )
+                                    <tr>
+                                        <td>$p.id </td>
+                                        <td>$p.permissionName </td>
+                                        <td>$p.url </td>
+                                        <td class="text-center">
+                                            <a href="/permission/toPermissionEditPage?id=${p.id}" class="btn bg-olive btn-xs">编辑</a>
+                                            <button type="button" id="deleteBtn" class="btn bg-olive btn-xs" onclick="deletePermission($p.id)" >删除</button>
+                                        </td>
+                                    </tr>
                                 #end
 
                             </tbody>
-
                             <!--
                         <tfoot>
                         <tr>
@@ -194,23 +182,23 @@
                     <div class="box-tools pull-right">
                         <ul class="pagination">
                             <li>
-                                <a href="/user/findByPage?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
+                                <a href="/permission/findByPage?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
                             </li>
                             #set($prePage=$pageInfo.pageNum - 1)
                             #if(!$pageInfo.isFirstPage)
-                                <li><a href="/user/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
+                                <li><a href="/permission/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
                             #end
 
                             #foreach($pageNum in [1..$pageInfo.pages])
-                                <li><a href="/user/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
+                                <li><a href="/permission/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
                             #end
 
                             #set($nextPage=$pageInfo.pageNum + 1)
                             #if(!$pageInfo.isLastPage)
-                                <li><a href="/user/findByPage?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
+                                <li><a href="/permission/findByPage?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
                             #end
                             <li>
-                                <a href="/user/findByPage?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
+                                <a href="/permission/findByPage?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
                             </li>
                         </ul>
                     </div>
@@ -282,6 +270,14 @@
 <script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
 <script src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script>
+    function deletePermission(id) {
+
+        if (confirm("您确定删除该权限吗?")) {
+            //点击确定后操作
+            location.href = '/permission/deletePermission?id=' + id;
+        }
+    }
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();

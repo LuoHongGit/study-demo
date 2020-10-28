@@ -52,6 +52,11 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
+    public void update(Role role) throws Exception {
+        roleDao.update(role);
+    }
+
+    @Override
     public List<Role> findAll() throws Exception{
         return roleDao.findAll();
     }

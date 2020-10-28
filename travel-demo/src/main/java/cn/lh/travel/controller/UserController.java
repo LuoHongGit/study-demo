@@ -23,7 +23,7 @@ public class UserController {
     @RequestMapping("/addRoleToUser")
     public String addRoleToUser(@RequestParam(name = "userId", required = true) int userId, @RequestParam(name = "ids", required = true) int[] roleIds) {
         userService.addRoleToUser(userId, roleIds);
-        return "redirect:findAll";
+        return "redirect:findByPage";
     }
 
     //查询用户以及用户可以添加的角色
@@ -46,7 +46,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         UserInfo userInfo = userService.findById(id);
         mv.addObject("user", userInfo);
-        mv.setViewName("user-show1");
+        mv.setViewName("user-show");
         return mv;
     }
 

@@ -22,7 +22,7 @@ public class RoleController {
     @RequestMapping("/deleteRole")
     public String deleteRole(@RequestParam(name="id",required = true) int roleId) throws Exception {
         roleService.deleteRoleById(roleId);
-        return "redirect:findAll";
+        return "redirect:findByPage";
     }
 
     //角色详情查询
@@ -40,7 +40,7 @@ public class RoleController {
     @RequestMapping("/addPermissionToRole")
     public String addPermissionToRole(@RequestParam(name = "roleId", required = true) int roleId, @RequestParam(name = "ids", required = true) int[] permissionIds) throws Exception {
         roleService.addPermissionToRole(roleId, permissionIds);
-        return "redirect:findAll";
+        return "redirect:findByPage";
     }
 
     //根据roleId查询role，并查询出可以添加的权限
@@ -89,5 +89,23 @@ public class RoleController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("role-add");
         return mv;
+    }
+
+    //角色详情查询
+    @RequestMapping("/toEditPage")
+    public ModelAndView toEditPage(@RequestParam(name = "id", required = true) int roleId) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        Role role = roleService.findById(roleId);
+
+        mv.addObject("role", role);
+        mv.setViewName("role-edit");
+        return mv;
+    }
+
+    //角色详情查询
+    @RequestMapping("/update")
+    public String update(Role role) throws Exception {
+        roleService.update(role);
+        return "redirect:findByPage";
     }
 }

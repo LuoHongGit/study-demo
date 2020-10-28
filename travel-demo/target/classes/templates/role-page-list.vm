@@ -57,7 +57,7 @@
 	href="/plugins/bootstrap-slider/slider.css">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini">
 
 	<div class="wrapper">
 
@@ -144,7 +144,7 @@
 											<td>$role.roleDesc </td>
 											<td class="text-center">
 												<a href="/role/toEditPage?id=${role.id}" class="btn bg-olive btn-xs">编辑</a>
-												<a href="/role/deleteRole.do?id=${role.id}" class="btn bg-olive btn-xs">删除角色</a>
+												<button type="button" id="deleteBtn" class="btn bg-olive btn-xs" onclick="deleteRole($role.id)" >删除</button>
 												<a href="/role/findRoleByIdAndAllPermission.do?id=${role.id}" class="btn bg-olive btn-xs">添加权限</a>
 											</td>
 										</tr>
@@ -283,6 +283,14 @@
 					locale : 'zh-CN'
 				});
 			});
+
+			function deleteRole(id) {
+
+				if (confirm("您确定删除该角色吗?")) {
+					//点击确定后操作
+					location.href = '/role/deleteRole?id=' + id;
+				}
+			}
 
 			// 设置激活菜单
 			function setSidebarActive(tagUri) {

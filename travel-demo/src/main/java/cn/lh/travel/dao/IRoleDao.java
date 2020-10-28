@@ -15,7 +15,7 @@ public interface IRoleDao {
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "roleName", column = "roleName"),
             @Result(property = "roleDesc", column = "roleDesc"),
-            @Result(property = "permissions",column = "id",javaType = List.class,many = @Many(select = "cn.lh.travel.dao.findPermissionByRoleId"))
+            @Result(property = "permissions",column = "id",javaType = List.class,many = @Many(select = "cn.lh.travel.dao.IPermissionDao.findPermissionByRoleId"))
     })
     public List<Role> findRoleByUserId(int userId) throws Exception;
 
@@ -24,6 +24,9 @@ public interface IRoleDao {
 
     @Insert("insert into role(roleName,roleDesc) values(#{roleName},#{roleDesc})")
     void save(Role role);
+
+    @Update("update role set roleName=#{roleName},roleDesc=#{roleDesc} where id=#{id}")
+    void update(Role role);
 
     @Select("select * from role where id=#{roleId}")
     @Results({

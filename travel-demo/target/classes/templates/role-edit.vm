@@ -3,9 +3,9 @@
 <!-- 页面meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>角色 - 角色添加</title>
-<meta name="description" content="角色 - 角色添加">
-<meta name="keywords" content="角色 - 角色添加">
+<title>角色 - 角色修改</title>
+<meta name="description" content="角色 - 角色修改">
+<meta name="keywords" content="角色 - 角色修改">
 
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -90,7 +90,7 @@
 			</section>
 			<!-- 内容头部 /-->
 
-			<form action="/role/save"
+			<form action="/role/update"
 				method="post">
 				<!-- 正文区域 -->
 				<section class="content"> <!--产品信息-->
@@ -99,15 +99,17 @@
 					<div class="panel-heading">角色信息</div>
 					<div class="row data-type">
 
+						<input type="hidden" name="id" value="$role.id"/>
+
 						<div class="col-md-2 title">角色名称</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="roleName"
-								placeholder="角色名称" value="">
+								placeholder="角色名称" value="$role.roleName">
 						</div>
 						<div class="col-md-2 title">角色描述</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="roleDesc"
-								placeholder="角色描述" value="">
+								placeholder="角色描述" value="$role.roleDesc">
 						</div>
 										
 

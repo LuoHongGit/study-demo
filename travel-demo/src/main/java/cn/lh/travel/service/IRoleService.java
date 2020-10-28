@@ -15,6 +15,8 @@ public interface IRoleService {
 
     void save(Role role) throws Exception;
 
+    void update(Role role) throws Exception;
+
     Role findById(int roleId) throws  Exception;
 
     List<Permission> findOtherPermissions(int roleId) throws Exception;
