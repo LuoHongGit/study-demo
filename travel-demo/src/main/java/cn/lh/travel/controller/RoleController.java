@@ -30,7 +30,6 @@ public class RoleController {
     public ModelAndView findById(@RequestParam(name = "id", required = true) int roleId) throws Exception {
         ModelAndView mv = new ModelAndView();
         Role role = roleService.findById(roleId);
-
         mv.addObject("role", role);
         mv.setViewName("role-show");
         return mv;
