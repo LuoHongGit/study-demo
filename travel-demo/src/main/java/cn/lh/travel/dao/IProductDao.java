@@ -9,7 +9,7 @@ public interface IProductDao {
 
     //根据id查询产品
     @Select("select * from lh_product where id=#{id}")
-    public Product findById(String id);
+    public Product findById(Integer id);
 
     //查询所有的产品信息
     @Select("select * from lh_product")
@@ -30,5 +30,5 @@ public interface IProductDao {
 
     //删除商品
     @Delete("delete from lh_product where id = #{id}")
-    void delete(int id);
+    void delete(Integer id);
 }

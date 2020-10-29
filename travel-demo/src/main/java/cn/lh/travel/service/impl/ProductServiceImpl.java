@@ -25,7 +25,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Product findById(String id) {
+    public Product findById(Integer id) {
         return productDao.findById(id);
     }
 
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
         productDao.delete(id);
     }
 
@@ -45,14 +45,14 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<Product> findAllByPageAndKey(int page, int size,String key) {
+    public List<Product> findAllByPageAndKey(Integer page, Integer size,String key) {
         //参数pageNum 是页码值   参数pageSize 代表是每页显示条数
         PageHelper.startPage(page, size);
         return productDao.findAllByKey(key);
     }
 
     @Override
-    public List<Product> findByPage(int page, int size) {
+    public List<Product> findByPage(Integer page, Integer size) {
         //参数pageNum 是页码值   参数pageSize 代表是每页显示条数
         PageHelper.startPage(page, size);
         return productDao.findAll();

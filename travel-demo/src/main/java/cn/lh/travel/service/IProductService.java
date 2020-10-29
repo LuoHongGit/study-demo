@@ -8,15 +8,15 @@ public interface IProductService {
 
     List<Product> findAll();
 
-    List<Product> findAllByPageAndKey(int page, int size,String key);
+    List<Product> findAllByPageAndKey(Integer page, Integer size,String key);
 
-    List<Product> findByPage(int page, int size);
+    List<Product> findByPage(Integer page, Integer size);
 
     void save(Product product);
 
-    Product findById(String id);
+    Product findById(Integer id);
 
     void update(Product product);
 
-    void delete(int id);
+    void delete(Integer id);
 }

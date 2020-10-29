@@ -146,7 +146,7 @@
 
                     <div class="col-md-2 title rowHeight2x">其他信息</div>
                     <div class="col-md-10 data rowHeight2x">
-						<textarea class="form-control" rows="3" placeholder="其他信息">
+						<textarea class="form-control" rows="3" placeholder="其他信息" readonly="readonly">
 							$orders.orderDesc
 						</textarea>
                     </div>
@@ -173,17 +173,12 @@
 
                     #foreach($traveller in $orders.travellers)
                         <tr>
-                            <td>$traveller.travellerTypeStr</td>
-                            <td><input type="text" size="10" value="$traveller.name "
-                                       readonly="readonly"></td>
-                            <td><input type="text" size="10" value="$traveller.sex "
-                                       readonly="readonly"></td>
-                            <td><input type="text" size="20"
-                                       value="$traveller.phoneNum" readonly="readonly"></td>
-                            <td><input type="text" size="15"
-                                       value="$traveller.credentialsTypeStr" readonly="readonly"></td>
-                            <td><input type="text" size="28"
-                                       value="$traveller.credentialsNum" readonly="readonly"></td>
+                            <td>$traveller.travellerTypeStr </td>
+                            <td>$traveller.name </td>
+                            <td>$traveller.sex </td>
+                            <td>$traveller.phoneNum </td>
+                            <td>$traveller.credentialsTypeStr </td>
+                            <td>$traveller.credentialsNum </td>
                         </tr>
                     #end
 

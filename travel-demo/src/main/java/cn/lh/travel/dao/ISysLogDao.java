@@ -9,9 +9,9 @@ import java.util.List;
 @Mapper
 public interface ISysLogDao {
 
-    @Insert("insert into lh_syslog(visitTime,username,ip,url,executionTime,method) values(#{visitTime},#{username},#{ip},#{url},#{executionTime},#{method})")
+    @Insert("insert into lh_sysLog(visitTime,username,ip,url,executionTime,method) values(#{visitTime},#{username},#{ip},#{url},#{executionTime},#{method})")
     public void save(SysLog sysLog) throws Exception;
 
-    @Select("select * from lh_sysLog")
+    @Select("select * from lh_sysLog order by visitTime desc")
     List<SysLog> findAll() throws Exception;
 }

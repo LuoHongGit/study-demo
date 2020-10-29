@@ -18,13 +18,13 @@ public class PermissionController {
     @Autowired
     private IPermissionService permissionService;
     @RequestMapping("/deletePermission")
-    public String deletePermission(int id) throws Exception {
+    public String deletePermission(Integer id) throws Exception {
         permissionService.deleteById(id);
         return "redirect:findByPage";
     }
 
     @RequestMapping("/findById")
-    public ModelAndView findById(int id) throws Exception {
+    public ModelAndView findById(Integer id) throws Exception {
       Permission permission=  permissionService.findById(id);
       ModelAndView mv=new ModelAndView();
       mv.setViewName("permission-show");
@@ -45,7 +45,7 @@ public class PermissionController {
     }
 
     @RequestMapping("/toPermissionEditPage")
-    public ModelAndView toPermissionEditPage(int id) throws Exception {
+    public ModelAndView toPermissionEditPage(Integer id) throws Exception {
         Permission permission=  permissionService.findById(id);
         ModelAndView mv=new ModelAndView();
         mv.setViewName("permission-edit");

@@ -175,6 +175,11 @@
                             <option value="3" #if($pageInfo.pageSize==3) selected="selected" #end>3</option>
                             <option value="4" #if($pageInfo.pageSize==4) selected="selected" #end>4</option>
                             <option value="5" #if($pageInfo.pageSize==5) selected="selected" #end>5</option>
+                            <option value="6" #if($pageInfo.pageSize==6) selected="selected" #end>6</option>
+                            <option value="7" #if($pageInfo.pageSize==7) selected="selected" #end>7</option>
+                            <option value="8" #if($pageInfo.pageSize==8) selected="selected" #end>8</option>
+                            <option value="9" #if($pageInfo.pageSize==9) selected="selected" #end>9</option>
+                            <option value="10" #if($pageInfo.pageSize==10) selected="selected" #end>10</option>
                         </select> 条数据
                         </div>
                     </div>
@@ -189,8 +194,18 @@
                                 <li><a href="/permission/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
                             #end
 
-                            #foreach($pageNum in [1..$pageInfo.pages])
-                                <li><a href="/permission/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
+                            #set($pageStart=$pageInfo.pageNum - 2)
+                            #if($pageStart<1)
+                                #set($pageStart=1)
+                            #end
+
+                            #set($pageEnd=$pageInfo.pageNum + 2)
+                            #if($pageEnd>$pageInfo.pages)
+                                #set($pageEnd=$pageInfo.pages)
+                            #end
+
+                            #foreach($pageNum in [$pageStart..$pageEnd])
+                                <li  class="#if($pageNum==$pageInfo.pageNum)active#end"><a href="/permission/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
                             #end
 
                             #set($nextPage=$pageInfo.pageNum + 1)
@@ -202,8 +217,14 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
+                <script type="text/javascript">
+                    function pageSizeChange(){
+                        var ps = document.getElementById("ps");
+                        var size = ps.value;
+                        location.href = "/permission/findByPage?page=" + $pageInfo.pageNum + "&size=" + size;
+                    };
+                </script>
                 <!-- /.box-footer-->
 
             </div>

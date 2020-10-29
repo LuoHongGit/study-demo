@@ -60,7 +60,7 @@ public class ProductController {
     }
 
     @RequestMapping("/findById")
-    public ModelAndView findById(@RequestParam("id")String id){
+    public ModelAndView findById(@RequestParam("id")Integer id){
         ModelAndView mv = new ModelAndView();
         Product product = productService.findById(id);
 
@@ -71,7 +71,7 @@ public class ProductController {
     }
 
     @RequestMapping("/toProductEdit")
-    public ModelAndView toProductEdit(@RequestParam("id")String id){
+    public ModelAndView toProductEdit(@RequestParam("id")Integer id){
         ModelAndView mv = new ModelAndView();
         Product product = productService.findById(id);
 
@@ -89,7 +89,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete")
-    public String delete(int id){
+    public String delete(Integer id){
         productService.delete(id);
 
         return "redirect:findByPage";

@@ -1,9 +1,11 @@
 package cn.lh.travel.entity;
 
+import cn.lh.travel.utils.DateUtils;
+
 import java.util.Date;
 
 public class SysLog {
-    private String id;
+    private Integer id;
     private Date visitTime;
     private String visitTimeStr;
     private String username;
@@ -12,11 +14,11 @@ public class SysLog {
     private Long executionTime;
     private String method;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -29,7 +31,8 @@ public class SysLog {
     }
 
     public String getVisitTimeStr() {
-        return visitTimeStr;
+
+        return DateUtils.date2String(this.getVisitTime(),"yyyy-MM-dd HH:mm:ss");
     }
 
     public void setVisitTimeStr(String visitTimeStr) {

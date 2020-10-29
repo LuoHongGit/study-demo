@@ -185,13 +185,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm"
-                                       placeholder="搜索"> <span
-                                    class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>
                         <!--工具栏/-->
 
                         <!--数据列表-->
@@ -199,9 +192,6 @@
                                class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right: 0px;"><input
-                                        id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th class="sorting_asc">ID</th>
                                 <th class="sorting_desc">订单编号</th>
                                 <th class="sorting_asc sorting_asc_disabled">产品名称</th>
@@ -217,7 +207,6 @@
 
                             #foreach($orders in $pageInfo.list)
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>$orders.id </td>
                                     <td>$orders.orderNum </td>
                                     <td>$orders.product.productName </td>
@@ -263,6 +252,11 @@
                             <option value="3" #if($pageInfo.pageSize==3) selected="selected" #end>3</option>
                             <option value="4" #if($pageInfo.pageSize==4) selected="selected" #end>4</option>
                             <option value="5" #if($pageInfo.pageSize==5) selected="selected" #end>5</option>
+                            <option value="6" #if($pageInfo.pageSize==6) selected="selected" #end>6</option>
+                            <option value="7" #if($pageInfo.pageSize==7) selected="selected" #end>7</option>
+                            <option value="8" #if($pageInfo.pageSize==8) selected="selected" #end>8</option>
+                            <option value="9" #if($pageInfo.pageSize==9) selected="selected" #end>9</option>
+                            <option value="10" #if($pageInfo.pageSize==10) selected="selected" #end>10</option>
                         </select> 条数据
                         </div>
                     </div>
@@ -270,28 +264,44 @@
                     <div class="box-tools pull-right">
                         <ul class="pagination">
                             <li>
-                                <a href="/orders/findAll?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
+                                <a href="/orders/findByPage?page=1&size="+$pageInfo.pageSize aria-label="Previous">首页</a>
                             </li>
                             #set($prePage=$pageInfo.pageNum - 1)
                             #if(!$pageInfo.isFirstPage)
-                                <li><a href="/orders/findAll?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
+                                <li><a href="/orders/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
                             #end
 
-                            #foreach($pageNum in [1..$pageInfo.pages])
-                                <li><a href="/orders/findAll?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
+                            #set($pageStart=$pageInfo.pageNum - 2)
+                            #if($pageStart<1)
+                                #set($pageStart=1)
+                            #end
+
+                            #set($pageEnd=$pageInfo.pageNum + 2)
+                            #if($pageEnd>$pageInfo.pages)
+                                #set($pageEnd=$pageInfo.pages)
+                            #end
+
+                            #foreach($pageNum in [$pageStart..$pageEnd])
+                                <li  class="#if($pageNum==$pageInfo.pageNum)active#end"><a href="/orders/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
                             #end
 
                             #set($nextPage=$pageInfo.pageNum + 1)
                             #if(!$pageInfo.isLastPage)
-                                <li><a href="/orders/findAll?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
+                                <li><a href="/orders/findByPage?page=$nextPage&size=$pageInfo.pageSize">下一页</a></li>
                             #end
                             <li>
-                                <a href="/orders/findAll?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
+                                <a href="/orders/findByPage?page=$pageInfo.pages&size=$pageInfo.pageSize" aria-label="Next">尾页</a>
                             </li>
                         </ul>
                     </div>
-
                 </div>
+                <script type="text/javascript">
+                    function pageSizeChange(){
+                        var ps = document.getElementById("ps");
+                        var size = ps.value;
+                        location.href = "/orders/findByPage?page=" + $pageInfo.pageNum + "&size=" + size;
+                    };
+                </script>
                 <!-- /.box-footer-->
 
             </div>
@@ -398,9 +408,6 @@
 <script
         src="/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-    function pageSizeChange(){
-        location.href = "/orders/findAll?page=" + $pageInfo.pageNum + "&size=" + $pageInfo.pageSize;
-    };
     
     $(document).ready(function() {
         // 选择框

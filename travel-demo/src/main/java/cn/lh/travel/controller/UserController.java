@@ -21,14 +21,14 @@ public class UserController {
 
     //给用户添加角色
     @RequestMapping("/addRoleToUser")
-    public String addRoleToUser(@RequestParam(name = "userId", required = true) int userId, @RequestParam(name = "ids", required = true) int[] roleIds) {
+    public String addRoleToUser(@RequestParam(name = "userId", required = true) Integer userId, @RequestParam(name = "ids", required = true) int[] roleIds) {
         userService.addRoleToUser(userId, roleIds);
         return "redirect:findByPage";
     }
 
     //查询用户以及用户可以添加的角色
     @RequestMapping("/findUserByIdAndAllRole")
-    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required = true) int userid) throws Exception {
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required = true) Integer userid) throws Exception {
         ModelAndView mv = new ModelAndView();
         //1.根据用户id查询用户
         UserInfo userInfo = userService.findById(userid);
@@ -42,7 +42,7 @@ public class UserController {
 
     //查询指定id的用户
     @RequestMapping("/findById")
-    public ModelAndView findById(int id) throws Exception {
+    public ModelAndView findById(Integer id) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserInfo userInfo = userService.findById(id);
         mv.addObject("user", userInfo);
@@ -52,7 +52,7 @@ public class UserController {
 
     //跳转到编辑页面
     @RequestMapping("/toEditPage")
-    public ModelAndView toEditPage(@RequestParam("id") int id) throws Exception {
+    public ModelAndView toEditPage(@RequestParam("id") Integer id) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserInfo userInfo = userService.findById(id);
         mv.addObject("user", userInfo);

@@ -20,14 +20,14 @@ public class RoleController {
     private IRoleService roleService;
 
     @RequestMapping("/deleteRole")
-    public String deleteRole(@RequestParam(name="id",required = true) int roleId) throws Exception {
+    public String deleteRole(@RequestParam(name="id",required = true) Integer roleId) throws Exception {
         roleService.deleteRoleById(roleId);
         return "redirect:findByPage";
     }
 
     //角色详情查询
     @RequestMapping("/findById")
-    public ModelAndView findById(@RequestParam(name = "id", required = true) int roleId) throws Exception {
+    public ModelAndView findById(@RequestParam(name = "id", required = true) Integer roleId) throws Exception {
         ModelAndView mv = new ModelAndView();
         Role role = roleService.findById(roleId);
         mv.addObject("role", role);
@@ -37,14 +37,14 @@ public class RoleController {
 
     //给角色添加权限
     @RequestMapping("/addPermissionToRole")
-    public String addPermissionToRole(@RequestParam(name = "roleId", required = true) int roleId, @RequestParam(name = "ids", required = true) int[] permissionIds) throws Exception {
+    public String addPermissionToRole(@RequestParam(name = "roleId", required = true) Integer roleId, @RequestParam(name = "ids", required = true) int[] permissionIds) throws Exception {
         roleService.addPermissionToRole(roleId, permissionIds);
         return "redirect:findByPage";
     }
 
     //根据roleId查询role，并查询出可以添加的权限
     @RequestMapping("/findRoleByIdAndAllPermission")
-    public ModelAndView findRoleByIdAndAllPermission(@RequestParam(name = "id", required = true) int roleId) throws Exception {
+    public ModelAndView findRoleByIdAndAllPermission(@RequestParam(name = "id", required = true) Integer roleId) throws Exception {
         ModelAndView mv = new ModelAndView();
         //根据roleId查询role
         Role role = roleService.findById(roleId);
@@ -91,7 +91,7 @@ public class RoleController {
 
     //角色详情查询
     @RequestMapping("/toEditPage")
-    public ModelAndView toEditPage(@RequestParam(name = "id", required = true) int roleId) throws Exception {
+    public ModelAndView toEditPage(@RequestParam(name = "id", required = true) Integer roleId) throws Exception {
         ModelAndView mv = new ModelAndView();
         Role role = roleService.findById(roleId);
 

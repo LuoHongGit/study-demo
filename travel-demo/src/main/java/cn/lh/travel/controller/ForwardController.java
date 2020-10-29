@@ -10,4 +10,9 @@ public class ForwardController {
         return "main";
     }
 
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 }

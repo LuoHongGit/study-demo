@@ -117,28 +117,12 @@
                                             onclick="location.href='/product/toAddProduct'">
                                         <i class="fa fa-file-o"></i> 新建
                                     </button>
-                                    #*<button type="button" class="btn btn-default" title="删除">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </button>
-                                    <button type="button" class="btn btn-default" title="开启">
-                                        <i class="fa fa-check"></i> 开启
-                                    </button>
-                                    <button type="button" class="btn btn-default" title="屏蔽">
-                                        <i class="fa fa-ban"></i> 屏蔽
-                                    </button>*#
                                     <button type="button" class="btn btn-default" title="刷新" onclick="location.href='/product/toProductList'">
                                         <i class="fa fa-refresh"></i> 刷新
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        #*<div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input id="searchVal" type="text" class="form-control input-sm"
-                                       placeholder="搜索" value="$!key" onchange="searchChange()"> <span
-                                    class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>*#
                         <!--工具栏/-->
 
                         <!--数据列表-->
@@ -199,6 +183,11 @@
                             <option value="3" #if($pageInfo.pageSize==3) selected="selected" #end>3</option>
                             <option value="4" #if($pageInfo.pageSize==4) selected="selected" #end>4</option>
                             <option value="5" #if($pageInfo.pageSize==5) selected="selected" #end>5</option>
+                            <option value="6" #if($pageInfo.pageSize==6) selected="selected" #end>6</option>
+                            <option value="7" #if($pageInfo.pageSize==7) selected="selected" #end>7</option>
+                            <option value="8" #if($pageInfo.pageSize==8) selected="selected" #end>8</option>
+                            <option value="9" #if($pageInfo.pageSize==9) selected="selected" #end>9</option>
+                            <option value="10" #if($pageInfo.pageSize==10) selected="selected" #end>10</option>
                         </select> 条数据
                         </div>
                     </div>
@@ -213,8 +202,18 @@
                                 <li><a href="/product/findByPage?page=$prePage&size=$pageInfo.pageSize">上一页</a></li>
                             #end
 
-                            #foreach($pageNum in [1..$pageInfo.pages])
-                                <li><a href="/product/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
+                            #set($pageStart=$pageInfo.pageNum - 2)
+                            #if($pageStart<1)
+                                #set($pageStart=1)
+                            #end
+
+                            #set($pageEnd=$pageInfo.pageNum + 2)
+                            #if($pageEnd>$pageInfo.pages)
+                                #set($pageEnd=$pageInfo.pages)
+                            #end
+
+                            #foreach($pageNum in [$pageStart..$pageEnd])
+                                <li  class="#if($pageNum==$pageInfo.pageNum)active#end"><a href="/product/findByPage?page=$pageNum&size=$pageInfo.pageSize">$pageNum</a></li>
                             #end
 
                             #set($nextPage=$pageInfo.pageNum + 1)
@@ -226,11 +225,15 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
+                <script type="text/javascript">
+                    function pageSizeChange(){
+                        var ps = document.getElementById("ps");
+                        var size = ps.value;
+                        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + size;
+                    };
+                </script>
                 <!-- /.box-footer-->
-
-
 
             </div>
 
@@ -338,12 +341,6 @@
 <script>
 
     #set($prePage=$pageInfo.pageNum - 1)
-
-    function pageSizeChange(){
-        var ps = document.getElementById("ps");
-        var size = ps.value;
-        location.href = "/product/findByPage?page=" + $pageInfo.pageNum + "&size=" + size;
-    };
 
     function searchChange(){
         var search = document.getElementById("searchVal");
