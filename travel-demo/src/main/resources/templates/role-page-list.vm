@@ -146,7 +146,7 @@
 												<a href="/role/findById?id=${role.id}" class="btn bg-olive btn-xs">详情</a>
 												<a href="/role/toEditPage?id=${role.id}" class="btn bg-olive btn-xs">编辑</a>
 												<button type="button" id="deleteBtn" class="btn bg-olive btn-xs" onclick="deleteRole($role.id)" >删除</button>
-												<a href="/role/findRoleByIdAndAllPermission.do?id=${role.id}" class="btn bg-olive btn-xs">添加权限</a>
+												<a href="/role/findRoleByIdAndAllPermission?id=${role.id}" class="btn bg-olive btn-xs">添加权限</a>
 											</td>
 										</tr>
 										#end

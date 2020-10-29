@@ -54,7 +54,6 @@ public class RoleController {
         mv.addObject("permissionList", otherPermissions);
         mv.setViewName("role-permission-add");
         return mv;
-
     }
 
     @RequestMapping("/save")
