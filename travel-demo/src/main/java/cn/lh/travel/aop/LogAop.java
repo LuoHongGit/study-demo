@@ -1,5 +1,6 @@
 package cn.lh.travel.aop;
 
+import cn.lh.travel.controller.ForwardController;
 import cn.lh.travel.controller.SysLogController;
 import cn.lh.travel.entity.SysLog;
 import cn.lh.travel.service.ISysLogService;
@@ -35,6 +36,11 @@ public class LogAop {
         startTime = new Date(); // 访问时间
         // 获取访问的类
         executionClass = jp.getTarget().getClass();
+
+        if (executionClass == ForwardController.class) {
+            return;
+        }
+
         // 获取访问的方法
         String methodName = jp.getSignature().getName();
         // 获取访问的方法的参数
@@ -54,6 +60,9 @@ public class LogAop {
     //主要获取日志中其它信息，时长、ip、url...
     @After("execution(* cn.lh.travel.controller.*.*(..))")
     public void doAfter(JoinPoint jp) throws Exception {
+        if (executionClass == ForwardController.class) {
+            return;
+        }
         // 获取类上的@RequestMapping对象
         if (executionClass != SysLogController.class) {
             RequestMapping classAnnotation = (RequestMapping)

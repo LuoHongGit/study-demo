@@ -15,4 +15,15 @@ public class ForwardController {
         return "login";
     }
 
+    @RequestMapping("/loginFail")
+    public String loginFail() {
+        return "login-fail";
+    }
+
+    @RequestMapping("/testError")
+    public String test() {
+        int i = 1 / 0;
+        return "login-fail";
+    }
+
 }

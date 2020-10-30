@@ -2,7 +2,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
-        <div class="user-panel">
+        #*<div class="user-panel">
             <div class="pull-left image">
                 <img src="/img/user2-160x160.jpg"
                      class="img-circle" alt="User Image">
@@ -11,41 +11,43 @@
                 <p>LuoHong</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
-        </div>
+        </div>*#
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">菜单</li>
+            <li class="header"><p style="font-size:20px">功能菜单</p></li>
             <li id="admin-index"><a
                     href="/index"><i
                     class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
-            <li class="treeview"><a href="#"> <i class="fa fa-cogs"></i>
-                <span>系统管理</span> <span class="pull-right-container"> <i
-                        class="fa fa-angle-left pull-right"></i>
+                <li class="treeview"><a href="#"> <i class="fa fa-cogs"></i>
+                    <span>系统管理</span> <span class="pull-right-container"> <i
+                            class="fa fa-angle-left pull-right"></i>
 				</span>
 
 
-            </a>
-                <ul class="treeview-menu menu-open" style="display: block;">
+                </a>
+                    <ul class="treeview-menu menu-open" style="display: block;">
 
-                    <li id="system-setting"><a
-                            href="/user/findByPage"> <i
-                            class="fa fa-circle-o"></i> 用户管理
-                    </a></li>
-                    <li id="system-setting"><a
-                            href="/role/findByPage"> <i
-                            class="fa fa-circle-o"></i> 角色管理
-                    </a></li>
-                    <li id="system-setting"><a
-                            href="/permission/findByPage">
-                        <i class="fa fa-circle-o"></i> 资源权限管理
-                    </a></li>
-                    <li id="system-setting"><a
-                            href="/sysLog/findByPage"> <i
-                            class="fa fa-circle-o"></i> 访问日志
-                    </a></li>
-                </ul></li>
+                        <li id="system-setting"><a
+                                href="/user/findByPage"> <i
+                                class="fa fa-circle-o"></i> 用户管理
+                        </a></li>
+                        <li id="system-setting"><a
+                                href="/role/findByPage"> <i
+                                class="fa fa-circle-o"></i> 角色管理
+                        </a></li>
+                        <li id="system-setting"><a
+                                href="/permission/findByPage">
+                            <i class="fa fa-circle-o"></i> 资源权限管理
+                        </a></li>
+                        <li id="system-setting"><a
+                                href="/sysLog/findByPage"> <i
+                                class="fa fa-circle-o"></i> 访问日志
+                        </a></li>
+                    </ul></li>
+
+
             <li class="treeview"><a href="#"> <i class="fa fa-cube"></i>
                 <span>基础数据</span> <span class="pull-right-container"> <i
                         class="fa fa-angle-left pull-right"></i>

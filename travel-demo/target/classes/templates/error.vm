@@ -1,9 +1,0 @@
-<html>
-<head lang="en">
-    <meta charset="UTF-8" />
-    <title>Insert title here</title>
-</head>
-<body>
-    ${name}接口发生了${exception.message}异常，异常状态码：${exception.code}，请联系管理员！！！
-</body>
-</html>
